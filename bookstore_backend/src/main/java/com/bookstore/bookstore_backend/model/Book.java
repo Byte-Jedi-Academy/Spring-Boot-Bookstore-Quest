@@ -2,8 +2,10 @@ package com.bookstore.bookstore_backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="books")
 public class Book {
     @Id
     private String isbn;

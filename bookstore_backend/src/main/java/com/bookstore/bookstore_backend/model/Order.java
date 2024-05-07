@@ -10,16 +10,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @OneToOne
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     private User userId;
+
+    @OneToOne
+    @JoinColumn(name="book_isbn", referencedColumnName = "isbn")
     private Book bookIsbn;
+
     private int piece;
+    
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date orderDate;
     private OrderStatus orderStatus;
