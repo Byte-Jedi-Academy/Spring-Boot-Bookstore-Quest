@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bookstore.bookstore_backend.dto.BookDTO;
 import com.bookstore.bookstore_backend.dto.BookDTOMapper;
-import com.bookstore.bookstore_backend.dto.UpdateBookRequest;
-import com.bookstore.bookstore_backend.exception.BookNotFoundException;
+import com.bookstore.bookstore_backend.dto.BookUpdateRequest;
 import com.bookstore.bookstore_backend.model.Book;
 import com.bookstore.bookstore_backend.repository.BookRepository;
 
@@ -30,7 +29,7 @@ public class BookService {
     public void deleteBook(Book book){
         bookRepository.delete(book);
     }
-    public BookDTO updateBook(String isbn, UpdateBookRequest bookRequest){
+    public BookDTO updateBook(String isbn, BookUpdateRequest bookRequest){
         Book book = new Book(isbn,
         bookRequest.title(),
         bookRequest.author(),
@@ -52,6 +51,6 @@ public class BookService {
     }
 
     public Book findBookByIsbn(String isbn){
-        return bookRepository.findById(isbn).orElseThrow(() -> new BookNotFoundException(""));
+        return bookRepository.findById(isbn).orElse(null);
     }
 }
