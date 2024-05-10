@@ -1,6 +1,6 @@
 package com.bookstore.bookstore_backend.dto;
 
-public record UpdateBookRequest(    
+public record BookUpdateRequest(    
     String title,
     String author,
     Double price,
